@@ -1,0 +1,50 @@
+body *{
+    font-family: 'andika';
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'adventureregular';
+    color: $orange;
+    margin-bottom: 0.5em;
+}
+/* 
+h1, h2{
+    margin-bottom: 1.5em;
+}
+h3, h4{
+    margin-bottom: 1em;
+} */
+
+h1{
+    font-size: 4em;
+}
+h2{
+    font-size: 3em;
+}
+h3{
+    font-size: 2.5em;
+}
+h4{
+    font-size: 2em;
+}
+a{
+    color: $blue;
+    transition: color .2s ease-out;
+    h1::before, h2::before, h3::before, h4::before{
+        content: '# ';
+    }
+}
+a:hover{
+    color: $blue-darker;
+    text-decoration: none;
+    h1, h2, h3, h4{
+        color: $orange-darker;
+        text-decoration: none;
+    }
+    h1::before, h2::before, h3::before, h4::before{
+        content: '> ';
+    }
+    /* h1::after, h2::after, h3::after, h4::after{
+        content: ' >';
+    } */
+}
+

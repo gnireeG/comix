@@ -1,0 +1,19 @@
+// Fonts
+@import 'fonts';
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+
+// TYPO
+@import 'typography';
+
+//custom css
+@import 'style';
+
+// css for modules
+@import 'navbar';
+@import 'alert';
