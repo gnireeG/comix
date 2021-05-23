@@ -77,7 +77,7 @@ export default{
             if(useCase == 'one'){
                 return returnWidth
             } else if(useCase == 'all'){
-                return returnWidth * this.comics.comics.length
+                return returnWidth * (this.comics.comics.length + 1)
             } else if(useCase == 'count'){
                 return count
             }
