@@ -2,25 +2,41 @@
     <div class="container mt-3 comix-detail">
         <div v-if="finishedLoading">
             <comix-breadcrumbs :links="[[comic.genre.title, '/genre/' + comic.genre.title], [comic.title, false]]"></comix-breadcrumbs>
-            <div class="row mt-5">
-                <div class="col-xl-4 col-lg-5 col-md-5 col-sm-5 col-3">
+            <div class="row mt-5 d-none d-sm-flex">
+                <div class="col-xl-4 col-lg-5 col-md-5 col-sm-4">
                     <img :src="comic.coverImage" :alt="comic.title">
                 </div>
-                <div class="col-xl-8 col-lg-7 col-md-7 col-sm-7 col-9">
+                <div class="col-xl-8 col-lg-7 col-md-7 col-sm-8">
                     <h1>{{ comic.title }}</h1>
                     <p>{{ comic.description }}</p>
                     <p class="author"><span class="author-icon"><i class="bi bi-person-fill"></i></span><span class="author-info">{{ comic.author }}, {{ comic.year }}</span></p>
                     <p class="link-to-watch"><a href="#"></a></p>
                 </div>
             </div>
+            <div class="d-block d-sm-none mt-5">
+                <div class="row">
+                    <div class="col-4">
+                        <img :src="comic.coverImage" :alt="comic.title">
+                    </div>
+                    <div class="col-8 d-flex align-items-center">
+                        <h2 class="mobile-title">{{ comic.title }}</h2>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <p>{{ comic.description }}</p>
+                    <p class="author"><span class="author-icon"><i class="bi bi-person-fill"></i></span><span class="author-info">{{ comic.author }}, {{ comic.year }}</span></p>
+                    <p class="link-to-watch"><a href="#"></a></p>
+
+                </div>
+            </div>
         </div>
         <div v-if="!finishedLoading" class="loading">
             <comix-loading-div class="breadcrumbs"></comix-loading-div>
-            <div class="row mt-5">
-                <div class="col-xl-4 col-lg-5 col-md-5 col-sm-5 col-3">
+            <div class="row mt-5 d-none d-sm-block">
+                <div class="col-xl-4 col-lg-5 col-md-5 col-sm-4 col-3">
                     <comix-loading-div class="image"></comix-loading-div>
                 </div>
-                <div class="col-xl-8 col-lg-7 col-md-7 col-sm-7 col-9">
+                <div class="col-xl-8 col-lg-7 col-md-7 col-sm-8 col-9">
                     <comix-loading-div class="title"></comix-loading-div>
                     <comix-loading-div class="text"></comix-loading-div>
                     <comix-loading-div class="text"></comix-loading-div>
@@ -116,6 +132,9 @@ export default{
             margin-right: 10px;
             line-height: 0;
         }
+    }
+    .mobile-title{
+        margin-bottom: 0;
     }
 }
 </style>
