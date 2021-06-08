@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-3 comix-detail">
         <div v-if="finishedLoading">
-            <comix-breadcrumbs :links="[[comic.genre.title, '/genre/' + comic.genre.title], [comic.title, false]]"></comix-breadcrumbs>
+            <!-- <comix-breadcrumbs :links="[[comic.genre.title, '/genre/' + comic.genre.title], [comic.title, false]]"></comix-breadcrumbs> -->
             <div class="row mt-5 d-none d-sm-flex">
                 <div class="col-xl-4 col-lg-5 col-md-5 col-sm-4">
                     <img :src="comic.coverImage" :alt="comic.title">

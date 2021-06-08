@@ -12,22 +12,22 @@
     </head>
     <body>
         <div id="app">
-            <comix-navbar></comix-navbar>
-            <transition name="fade">
-                <router-view></router-view>
-            </transition>
-            <comix-alert></comix-alert>
+            <comix-wrapper>
+                <comix-navbar></comix-navbar>
+                <!-- <transition name="fade"> -->
+                    <router-view></router-view>
+                <!-- </transition> -->
+                <comix-alert></comix-alert>
+            </comix-wrapper>
         </div>
-        <style>
+        <!-- <style>
             .fade-enter-active {
-                transition: all .5s ease-out;
+                transition: all 0s ease-out;
                 }
             .fade-enter, .fade-leave-to{
-                margin-left: -300px;
+                /*margin-left: -300px;*/
                 opacity: 0;
-                /* transform-origin: top left;
-                transform: scale(0); */
             }
-        </style>
+        </style> -->
     </body>
 </html>

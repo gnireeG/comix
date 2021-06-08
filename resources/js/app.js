@@ -8,6 +8,7 @@ Vue.use(Vuex);
 Vue.use(VueRouter);
 
 Vue.component('vue-container', require('./components/VueContainer.vue').default);
+Vue.component('comix-wrapper', require('./components/pages/ComixWrapper.vue').default);
 Vue.component('comix-overview', require('./components/pages/ComixOverview.vue').default);
 Vue.component('comix-navbar', require('./components/ComixNavbar.vue').default);
 Vue.component('comix-alert', require('./components/ComixAlert.vue').default);

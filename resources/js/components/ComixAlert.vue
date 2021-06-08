@@ -11,7 +11,6 @@
 <script>
   export default {
     mounted() {
-        console.log('Alert loaded.')
     },
     data(){
       return{

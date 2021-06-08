@@ -1,44 +1,83 @@
+.navbar-link{
+    margin: 0 15px;
+    color: white;
+    font-family: 'adventureregular', sans-serif;
+    font-size: 2em;
+    cursor: pointer;
+    user-select: none;
+    transition: all .2s ease-in-out;
+}
+.genre-toggle{
+    .navbar-link{
+        font-size: 1.7em;
+    }
+}
+.navbar-link.router-link-exact-active{
+    color: $red;
+}
+.navbar-link:hover{
+    color: $red;
+}
+
+.comix-navbar.genres-expanded{
+    .navbar-link:nth-child(1)::after{
+        border-bottom: 13px solid $body-bg-brighter;
+    }
+}
+.navbar-container{
+    margin-bottom: 5rem;
+}
 .comix-navbar{
     display: flex;
     width: 100%;
-    border-bottom: 2px solid $indigo;
-    padding: 20px;
+    padding: 20px 0 10px 0;
     justify-content: space-between;
 
-    .navbar-link{
-        margin: 0 15px;
-        color: $orange;
-        font-family: 'adventureregular', sans-serif;
-        font-size: 2em;
+    .navbar-link:nth-child(1){
+        margin-left: 60px;
+        position: relative;
     }
-    .navbar-link.router-link-exact-active{
-        color: $orange-darker;
+    .navbar-link:nth-child(1)::after{
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 13px solid transparent;
+        border-right: 13px solid transparent;
+        border-bottom: 13px solid transparent;
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: all .35s ease-in-out;
     }
-    .navbar-link:hover{
-        color: $orange-darker;
-    }
+
     .logo-container, .navbar-links{
         display: flex;
-        align-items: center;
+        align-items: flex-end;
     }
 
     #search-input{
-        background-color: $body-bg-darker;
+        background: none;
         color: $text-on-dark;
         border: none;
+        border-bottom: 2px solid $red;
         padding: 8px 15px;
         margin: 0;
-        border-top-left-radius: 3px;
-        border-bottom-left-radius: 3px;
     }
     .navbar-search{
+        *{
+            vertical-align: bottom;
+        }
+        
         button{
             border: none;
-            height: 100%;
-            padding: 0 15px;
             font-size: 1.2em;
-            border-top-right-radius: 3px;
-            border-bottom-right-radius: 3px;
+            background: none;
+            color: $red;
+            .search-icon::before{
+                font-weight: bold!important;
+                font-size: 1.2em;
+            }
         }
     }
 
@@ -46,7 +85,7 @@
 }
 #search-input::placeholder{
     color: $text-on-dark;
-    opacity: .8;
+    opacity: .6;
 }
 #search-input:focus-visible{
     outline:none;
@@ -70,6 +109,13 @@
 }
 .comix-navbar-toggle-inverted{
     color: $body-bg!important;
+}
+
+.genre-toggle{
+    background: $body-bg-brighter;
+    padding: 5px 0;
+    position: absolute;
+    width: 100%;
 }
 
 @media screen and (max-width: 991px) {
