@@ -19,8 +19,8 @@
                     </div>
                 </div>
                 <div class="navbar-search">
-                    <input type="text" name="search-input" id="search-input" placeholder="suchen">
-                    <button><i class="bi bi-search search-icon"></i></button>
+                    <input type="text" name="search-input" id="search-input" placeholder="suchen" @input="searchComix" v-model="searchval">
+                    <button @click="searchComix"><i class="bi bi-search search-icon"></i></button>
                 </div>
             </div>
         </div>
@@ -49,12 +49,17 @@
                 this.genresExpanded = false
             }
         })
+        if(this.$route.name === 'search'){
+            this.searchval = this.$route.params.query
+            this.$store.commit('updateSearchVal', {query: this.searchval})
+        }
     },
     data(){
         return {
             categories: [],
             mobileNavActive : false,
-            genresExpanded: false
+            genresExpanded: false,
+            searchval: ''
         }
     },
     computed: {
@@ -63,6 +68,28 @@
         }
     },
     methods:{
+        searchComix:debounce(function(){
+            if(this.searchval.length > 2){
+                this.$store.commit('updateSearchVal', {query: this.searchval})
+            }
+            if(this.$route.name == 'search'){
+                if(this.$route.params.query !== this.searchval){
+                    this.$router.push({name: 'search', params: {query: this.searchval}})
+                }
+            } else{
+                if(this.searchval.length > 2){
+                    this.$router.push({name: 'search', params: {query: this.searchval}})
+                }
+            }
+            
+        },800),
+        searchComixBtn(){
+            this.$store.commit('updateSearchVal', {query: ''})
+            this.$store.commit('updateSearchVal', {query: this.searchval})
+            if(this.searchval.length > 2){
+                this.$router.push({name: 'search', params: {query: this.searchval}})
+            }
+        },
         toggleMobileNav(){
             this.mobileNavActive = !this.mobileNavActive
         },

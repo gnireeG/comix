@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "bootstrap-icons": "^1.5.0",
+        "debounce": "^1.2.1",
         "vue": "^2.6.12",
         "vue-router": "^3.5.1",
         "vuex": "^3.6.2"

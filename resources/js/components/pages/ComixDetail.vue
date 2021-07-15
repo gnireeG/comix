@@ -30,9 +30,9 @@
                 </div>
             </div>
         </div>
-        <div v-if="!finishedLoading" class="loading">
+        <div v-show="!finishedLoading" class="loading">
             <comix-loading-div class="breadcrumbs"></comix-loading-div>
-            <div class="row mt-5 d-none d-sm-block">
+            <div class="row mt-5 d-none d-sm-flex">
                 <div class="col-xl-4 col-lg-5 col-md-5 col-sm-4 col-3">
                     <comix-loading-div class="image"></comix-loading-div>
                 </div>

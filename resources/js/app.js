@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 window.Vue = Vue;
+window.debounce = require('debounce')
 require('./bootstrap');
 
 Vue.use(Vuex);
@@ -27,7 +28,8 @@ const store = new Vuex.Store({
         isMobile: false,
         comicGenres: [],
         allComics: [],
-        width: 0
+        width: 0,
+        searchVal: ''
     },
     mutations : {
         showAlert (state){
@@ -50,6 +52,9 @@ const store = new Vuex.Store({
         },
         updateWidth(state, payload){
             state.width = payload.width
+        },
+        updateSearchVal(state, payload){
+            state.searchVal = payload.query
         }
     }
 })
@@ -58,6 +63,7 @@ const store = new Vuex.Store({
 
 const routes = [
     {name: 'home', path: '/', component: require('./components/pages/ComixOverview.vue').default},
+    {name: 'search', path: '/search/:query', component: require('./components/pages/ComixSearch.vue').default},
     {name: 'genre', path: '/genre/:genre', component: require('./components/pages/ComixGenre.vue').default},
     {path: '/genre/', redirect: '/'},
     {name: 'comic', path: '/comic/:id/:title', component: require('./components/pages/ComixDetail.vue').default},
