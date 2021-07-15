@@ -10,8 +10,8 @@
             <router-link v-on:click.native="hideSplash" :to="{name: 'genre', params: {genre: 'Horror'}}" class="splash-genre" style="background-image: url('img/splash/horror.jpg');">
                 <h2>Horror</h2>
             </router-link>
-            <router-link v-on:click.native="hideSplash" :to="{name: 'genre', params: {genre: 'Manga'}}" class="splash-genre" style="background-image: url('img/splash/manga.jpg');">
-                <h2>Manga</h2>
+            <router-link v-on:click.native="hideSplash" :to="{name: 'genre', params: {genre: 'Thriller'}}" class="splash-genre" style="background-image: url('img/splash/manga.jpg');">
+                <h2>Thriller</h2>
             </router-link>
             <div class="splash-home">
                 <h1 @click="hideSplash"><comix-logo></comix-logo></h1>
@@ -75,12 +75,10 @@ export default{
     methods: {
         hideSplash(){
             this.showSplash = false
-            console.log('test')
         }
     },
     computed:{
         getRoute(){
-            console.log('hasdf')
         }
     },
     mounted(){

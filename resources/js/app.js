@@ -20,6 +20,8 @@ Vue.component('comix-logo', require('./components/ComixLogo.vue').default);
 Vue.component('comix-genre', require('./components/pages/ComixGenre.vue').default);
 Vue.component('comix-breadcrumbs', require('./components/ComixBreadcrumbs.vue').default);
 Vue.component('comix-loading-div', require('./components/ComixLoadingDiv.vue').default);
+Vue.component('comix-reader', require('./components/pages/ComixReader.vue').default);
+Vue.component('comix-music-player', require('./components/ComixMusicPlayer.vue').default);
 
 // VUEX STORE
 const store = new Vuex.Store({
@@ -29,7 +31,9 @@ const store = new Vuex.Store({
         comicGenres: [],
         allComics: [],
         width: 0,
-        searchVal: ''
+        searchVal: '',
+        audioSource: '',
+        volume: .5
     },
     mutations : {
         showAlert (state){
@@ -55,6 +59,12 @@ const store = new Vuex.Store({
         },
         updateSearchVal(state, payload){
             state.searchVal = payload.query
+        },
+        updateAudioSource(state, payload){
+            state.audioSource = payload.audioSource
+        },
+        updateVolume(state, payload){
+            state.volume = payload.volume
         }
     }
 })
@@ -68,7 +78,7 @@ const routes = [
     {path: '/genre/', redirect: '/'},
     {name: 'comic', path: '/comic/:id/:title', component: require('./components/pages/ComixDetail.vue').default},
     {path: '/coimc', redirect: '/'},
-    {path: '/test/:title', component: require('./components/VueContainer.vue').default},
+    {name: 'reader', path: '/reader/:id/:title', component: require('./components/pages/ComixReader.vue').default},
     {name: '404', path: '/404', component: require('./components/pages/Comix404.vue').default},
     {path: '*', redirect: '/404'}
 ]

@@ -40,5 +40,7 @@ Route::get('/getNavlinks', function(){
 Route::get('/getGenres', 'App\Http\Controllers\GenreController@getGenres');
 Route::get('/getComics', 'App\Http\Controllers\ComicController@getComics');
 Route::get('/getComicById/{id}', 'App\Http\Controllers\ComicController@getComicById');
+Route::get('/getImagesByComicId/{id}', 'App\Http\Controllers\ImageController@getImagesByComicId');
+Route::get('/getAudioByComicId/{id}', 'App\Http\Controllers\AudioController@getAudioByComicId');
 Route::get('/getGenreWithComics/{genre}', 'App\Http\Controllers\GenreController@getGenreWithComics');
 Route::get('/searchEverything/{query_val}', 'App\Http\Controllers\SearchController@searchEverything');

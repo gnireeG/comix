@@ -14,20 +14,11 @@
         <div id="app">
             <comix-wrapper>
                 <comix-navbar></comix-navbar>
-                <!-- <transition name="fade"> -->
                     <router-view></router-view>
-                <!-- </transition> -->
                 <comix-alert></comix-alert>
             </comix-wrapper>
+            <comix-music-player></comix-music-player>
         </div>
-        <!-- <style>
-            .fade-enter-active {
-                transition: all 0s ease-out;
-                }
-            .fade-enter, .fade-leave-to{
-                /*margin-left: -300px;*/
-                opacity: 0;
-            }
-        </style> -->
+        
     </body>
 </html>

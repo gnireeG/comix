@@ -37,7 +37,7 @@ export default{
     watch: {
         searchValue(){
             
-            console.log('searching now...')
+            //console.log('searching now...')
             axios.get(`/searchEverything/${this.searchValue}`)
                 .then(data =>{
                     this.foundComix = data.data

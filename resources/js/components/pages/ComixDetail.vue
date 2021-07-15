@@ -10,7 +10,12 @@
                     <h1>{{ comic.title }}</h1>
                     <p>{{ comic.description }}</p>
                     <p class="author"><span class="author-icon"><i class="bi bi-person-fill"></i></span><span class="author-info">{{ comic.author }}, {{ comic.year }}</span></p>
-                    <p class="link-to-watch"><a href="#"></a></p>
+                    <router-link class="button-primary mt-3 mb-3" :to="{name: 'reader', params: {id: comic.id, title: comic.title}}">Jetzt lesen</router-link><br>
+                    <span>
+                        <i v-if="volume == 0" class="bi bi-volume-mute-fill"></i>
+                        <i v-if="volume > 0" class="bi bi-volume-up-fill"></i>
+                        <input v-model="volume" type="range" id="volume" name="volume" min="0" max="1" step="0.01">
+                    </span>
                 </div>
             </div>
             <div class="d-block d-sm-none mt-5">
@@ -25,8 +30,12 @@
                 <div class="mt-3">
                     <p>{{ comic.description }}</p>
                     <p class="author"><span class="author-icon"><i class="bi bi-person-fill"></i></span><span class="author-info">{{ comic.author }}, {{ comic.year }}</span></p>
-                    <p class="link-to-watch"><a href="#"></a></p>
-
+                    <router-link class="button-primary mt-3 mb-3" :to="{name: 'reader', params: {id: comic.id, title: comic.title}}">Jetzt lesen</router-link><br>
+                    <span>
+                        <i v-if="volume == 0" class="bi bi-volume-mute-fill"></i>
+                        <i v-if="volume > 0" class="bi bi-volume-up-fill"></i>
+                        <input v-model="volume" type="range" id="volume" name="volume" min="0" max="1" step="0.01">
+                    </span>
                 </div>
             </div>
         </div>
@@ -59,6 +68,20 @@ export default{
                 }
                 this.comic = res.data[0]
                 this.finishedLoading = true
+                
+            })
+            .catch((error) =>{
+                this.$store.commit('showAlert')
+            })
+        axios.get(`/getAudioByComicId/${this.$route.params.id}`)
+            .then((res) =>{
+                if(res.data.length > 0){
+                    res.data.forEach(audio =>{
+                        if(audio.page === 0){
+                            this.$store.commit('updateAudioSource', {audioSource: audio.url})
+                        }
+                    })
+                }
             })
             .catch((error) =>{
                 this.$store.commit('showAlert')
@@ -68,9 +91,15 @@ export default{
         return{
             comic: null,
             finishedLoading: false,
-            comicNotFound: false
+            comicNotFound: false,
+            volume: this.$store.state.volume
         }
         
+    },
+    watch: {
+        volume(){
+            this.$store.commit('updateVolume', {volume: this.volume})
+        }
     }
 }
 </script>
