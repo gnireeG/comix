@@ -1,12 +1,35 @@
 <template>
 <div class="navbar-container">
     <div class="comix-navbar-toggle">
-        <button @click="toggleMobileNav" v-if="!mobileNavActive"><i class="bi bi-list"></i></button>
-        <button class="comix-navbar-toggle-inverted" @click="toggleMobileNav" v-if="mobileNavActive"><i class="bi bi-x-circle"></i></button>
+        <div class="container">
+            <router-link v-if="isMobile" :to="{name: 'home'}"  class="mobile-comix-logo"><comix-logo></comix-logo></router-link>
+            <div class="mobile-nav-buttons">
+                <button v-if="isMobile" @click="toggleMobileSearch"><i class="bi bi-search search-icon mobile-search-icon"></i></button>
+                <button @click="toggleMobileNav" v-if="!mobileNavActive"><i class="bi bi-list"></i></button>
+                <button class="comix-navbar-toggle-inverted" @click="toggleMobileNav" v-if="mobileNavActive"><i class="bi bi-x-circle"></i></button>
+            </div>
+        </div>
+        <!-- MOBILE MENU -->
+        <div class="container mt-3" v-if="mobileNavActive && isMobile">
+            <div class="mobile-nav-links">
+                <p @click="toggleMobileGenres" class="navbar-link genre-btn">Genres</p>
+                <div class="mobile-genre-container" v-show="mobileGenresExpanded">
+                    <router-link class="navbar-link genre-btn" v-for="(category, index) in categories" :key="index"
+                    :to="{name: 'genre', params: {genre: category.title}}">{{ category.title }}</router-link>
+                </div>
+                <p class="navbar-link">Beliebt</p>
+                <p class="navbar-link">Neuheiten</p>
+            </div>
+            
+        </div>
+        <div class="navbar-search" v-show="mobileSearchActive">
+            <div class="container"><input type="text" name="search-input" id="search-input" placeholder="suchen" @input="searchComix" v-model="searchval"></div>
+        </div>
     </div>
-    <div class="comix-navbar" :class="{'active' : mobileNavActive, 'genres-expanded' : genresExpanded}">
-        <div :class="{'container' : !isMobile}">
-            <div class="comix-navbar-nav" :class="{'d-flex justify-content-between flex-fill align-items-baseline' : !isMobile}">
+    <!-- DESKTOP MENU -->
+    <div v-if="!isMobile" class="comix-navbar" :class="{'genres-expanded' : genresExpanded}">
+        <div class="container">
+            <div class="comix-navbar-nav d-flex justify-content-between flex-fill align-items-baseline">
                 <div class="d-flex">
                     <div class="logo-container">
                         <router-link :to="{name: 'home'}"><comix-logo></comix-logo></router-link>
@@ -25,7 +48,7 @@
             </div>
         </div>
     </div>
-    <transition name="genre">
+    <transition v-if="!isMobile" name="genre">
         <div class="genre-toggle" v-if="genresExpanded">
             <div class="container genre-toggle-container">
                 <router-link class="navbar-link genre-btn" v-for="(category, index) in categories" :key="index"
@@ -58,7 +81,9 @@
         return {
             categories: [],
             mobileNavActive : false,
+            mobileSearchActive: false,
             genresExpanded: false,
+            mobileGenresExpanded: false,
             searchval: ''
         }
     },
@@ -95,6 +120,12 @@
         },
         toggleGenres(){
             this.genresExpanded = !this.genresExpanded
+        },
+        toggleMobileGenres(){
+            this.mobileGenresExpanded = !this.mobileGenresExpanded
+        },
+        toggleMobileSearch(){
+            this.mobileSearchActive = !this.mobileSearchActive
         }
     },
     watch: {
@@ -104,11 +135,15 @@
     }
   };
 </script>
+
 <style scoped>
 .genre-enter-active, .genre-leave-active {
   transition: opacity .35s;
 }
 .genre-enter, .genre-leave-to{
   opacity: 0;
+}
+.mobile-search-icon{
+    font-size: .8em;
 }
 </style>

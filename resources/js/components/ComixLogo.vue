@@ -1,5 +1,5 @@
 <template>
-    <p>COMI<span>X</span></p>
+    <p class="comix-logo">COMI<span>X</span></p>
 </template>
 <style scoped>
     p{

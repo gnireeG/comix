@@ -1,9 +1,11 @@
 <template>
     <div class="comix-teaser" :class="{'in-grid': inGrid}">
-        <img :src="comic.coverImage" :alt="comic.title">
-        <div class="info">
-            <router-link :to="{name: 'comic', params: {id: comic.id, title: comic.title.replaceAll(' ', '-')}}"><button><i class="bi bi-eye-fill"></i></button></router-link>
-        </div>
+        <router-link :to="{name: 'comic', params: {id: comic.id, title: comic.title.replaceAll(' ', '-')}}">
+            <img :src="comic.coverImage" :alt="comic.title">
+        </router-link>
+        <!-- <div class="info">
+            <button><i class="bi bi-eye-fill"></i></button>
+        </div> -->
     </div>   
 </template>
 <script>
@@ -27,8 +29,12 @@ $transition: .3s ease-in-out;
     transition: transform $transition;
     img{
         width: 100%;
-        
-
+        transition: .2s ease-in-out;
+    }
+    a:hover{
+        img{
+            transform: scale(1.05);
+        }
     }
     .info{
         height: 100%;

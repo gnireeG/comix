@@ -8,6 +8,10 @@
     transition: all .2s ease-in-out;
 }
 .genre-toggle{
+    background: $body-bg-brighter;
+    padding: 5px 0;
+    position: absolute;
+    width: 100%;
     .navbar-link{
         font-size: 1.7em;
     }
@@ -56,32 +60,33 @@
         align-items: flex-end;
     }
 
-    #search-input{
-        background: none;
-        color: $text-on-dark;
-        border: none;
-        border-bottom: 2px solid $red;
-        padding: 8px 15px;
-        margin: 0;
-    }
-    .navbar-search{
-        *{
-            vertical-align: bottom;
-        }
-        
-        button{
-            border: none;
-            font-size: 1.2em;
-            background: none;
-            color: $red;
-            .search-icon::before{
-                font-weight: bold!important;
-                font-size: 1.2em;
-            }
-        }
-    }
+
 
                 
+}
+#search-input{
+    background: none;
+    color: $text-on-dark;
+    border: none;
+    border-bottom: 2px solid $red;
+    padding: 8px 15px;
+    margin: 0;
+}
+.navbar-search{
+    *{
+        vertical-align: bottom;
+    }
+    
+    button{
+        border: none;
+        font-size: 1.2em;
+        background: none;
+        color: $red;
+        .search-icon::before{
+            font-weight: bold!important;
+            font-size: 1.2em;
+        }
+    }
 }
 #search-input::placeholder{
     color: $text-on-dark;
@@ -92,30 +97,26 @@
 }
 
 .comix-navbar-toggle{
+    width: 100vw;
     position: fixed;
-    top: 25px;
-    right: 10px;
     font-size: 2em;
     z-index: 99999;
+    background-color: $body-bg;
+    top: 0;
     button{
         border: none;
         background: none;
         color: white;
     }
-    :active{
-        transform: scale(.95);
-        transform-origin: center;
-    }
-}
-.comix-navbar-toggle-inverted{
-    color: $body-bg!important;
+    
 }
 
-.genre-toggle{
-    background: $body-bg-brighter;
-    padding: 5px 0;
-    position: absolute;
-    width: 100%;
+.mobile-comix-logo .comix-logo{
+    font-size: 1em!important;
+}
+
+.mobile-comix-logo{
+    margin-top: 10px;
 }
 
 @media screen and (max-width: 991px) {
@@ -128,43 +129,49 @@
         width: 100vw;
         z-index: 9999;
         top: 0;
-        #search-input{
-            background-color: white;
-            color: $body-bg;
-        }
-        .navbar-search{
-            button{
-                background-color: $body-bg;
-                color: $text-on-dark;
-            }
-        }
     }
-    #search-input::placeholder{
-        color: $body-bg;
-        opacity: .8;
+
+    .comix-navbar-toggle .container{
+        display: flex;
+        justify-content: space-between;
+        background-color: $body-bg;
+        padding: 0 15px;
     }
+
+    .comix-navbar-toggle{
+        padding-bottom: 15px;
+        box-shadow: 0px 5px 15px 5px #000000;
+    }
+    
     .comix-navbar.active{
         display: block;
         .comix-navbar-nav{
         margin: 8px;
-        display: flex;
-        flex-flow: wrap;
-            div:nth-child(1){
-                order: 1;
-            }
-            div:nth-child(2){
-                order: 3;
-                width: 100%;
-            }
-            div:nth-child(3){
-                order: 2;
-                flex-grow: 1;
-                display: flex;
-                justify-content: flex-end;
-                padding-right: 40px;
-            }
+        
         }
     }
+
+    .mobile-nav-links *{
+        font-size: 1em;
+    }
+
+    .navbar-link{
+        margin: 0;
+    }
+
+    .mobile-genre-container{
+        margin-left: 15px;
+        .navbar-link{
+            display: block;
+            font-size: .8em;
+        }
+    }
+
+    #search-input{
+        font-size: .5em;
+    }
+
+
   }
 
 @media screen and (min-width: 992px){
