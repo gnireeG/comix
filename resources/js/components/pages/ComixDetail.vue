@@ -10,11 +10,9 @@
                     <h1>{{ comic.title }}</h1>
                     <p>{{ comic.description }}</p>
                     <p class="author"><span class="author-icon"><i class="bi bi-person-fill"></i></span><span class="author-info">{{ comic.author }}, {{ comic.year }}</span></p>
-                    <router-link class="button-primary mt-3 mb-3" :to="{name: 'reader', params: {id: comic.id, title: comic.title}}">Jetzt lesen</router-link><br>
+                    <router-link class="button-primary mt-3 mb-3" :to="{name: 'reader', params: {id: comic.id, title: comic.title}}">Read now</router-link><br>
                     <span>
-                        <i v-if="volume == 0" class="bi bi-volume-mute-fill"></i>
-                        <i v-if="volume > 0" class="bi bi-volume-up-fill"></i>
-                        <input v-model="volume" type="range" id="volume" name="volume" min="0" max="1" step="0.01">
+                        <comix-volume-slider></comix-volume-slider>
                     </span>
                 </div>
             </div>
@@ -30,11 +28,9 @@
                 <div class="mt-3">
                     <p>{{ comic.description }}</p>
                     <p class="author"><span class="author-icon"><i class="bi bi-person-fill"></i></span><span class="author-info">{{ comic.author }}, {{ comic.year }}</span></p>
-                    <router-link class="button-primary mt-3 mb-3" :to="{name: 'reader', params: {id: comic.id, title: comic.title}}">Jetzt lesen</router-link><br>
+                    <router-link class="button-primary mt-3 mb-3" :to="{name: 'reader', params: {id: comic.id, title: comic.title}}">Read now</router-link><br>
                     <span>
-                        <i v-if="volume == 0" class="bi bi-volume-mute-fill"></i>
-                        <i v-if="volume > 0" class="bi bi-volume-up-fill"></i>
-                        <input v-model="volume" type="range" id="volume" name="volume" min="0" max="1" step="0.01">
+                        <comix-volume-slider></comix-volume-slider>
                     </span>
                 </div>
             </div>

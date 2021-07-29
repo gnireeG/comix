@@ -22,6 +22,7 @@ Vue.component('comix-breadcrumbs', require('./components/ComixBreadcrumbs.vue').
 Vue.component('comix-loading-div', require('./components/ComixLoadingDiv.vue').default);
 Vue.component('comix-reader', require('./components/pages/ComixReader.vue').default);
 Vue.component('comix-music-player', require('./components/ComixMusicPlayer.vue').default);
+Vue.component('comix-volume-slider', require('./components/ComixVolumeSlider.vue').default);
 
 // VUEX STORE
 const store = new Vuex.Store({
@@ -33,7 +34,9 @@ const store = new Vuex.Store({
         width: 0,
         searchVal: '',
         audioSource: '',
-        volume: .5
+        volume: .5,
+        isIos: null,
+        allowMusic: false
     },
     mutations : {
         showAlert (state){
@@ -47,6 +50,9 @@ const store = new Vuex.Store({
         },
         deviceDesktop(state){
             state.isMobile = false
+        },
+        updateIos(state, payload){
+            state.isIos = payload.isIos
         },
         updateComicGenres(state, payload){
             state.comicGenres = payload.genres
@@ -65,7 +71,11 @@ const store = new Vuex.Store({
         },
         updateVolume(state, payload){
             state.volume = payload.volume
+        },
+        allowMusicToggle(state, payload){
+            state.allowMusic = payload.status
         }
+        
     }
 })
 
@@ -115,5 +125,18 @@ const app = new Vue({
         }
         calcIfMobile()
         window.addEventListener('resize', calcIfMobile)
+        function iOS() {
+            return [
+              'iPad Simulator',
+              'iPhone Simulator',
+              'iPod Simulator',
+              'iPad',
+              'iPhone',
+              'iPod'
+            ].includes(navigator.platform)
+            // iPad on iOS 13 detection
+            || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+          }
+          store.commit('updateIos', {isIos: iOS()})
     }
 })

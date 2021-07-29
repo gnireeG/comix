@@ -17,11 +17,14 @@ export default{
         },
         volume(){
             return this.$store.state.volume
+        },
+        musicAllowed(){
+            return this.$store.state.allowMusic
         }
     },
     watch: {
         audioSource(){
-            if(this.audioSource !== null){
+            if(this.audioSource !== null && this.$store.state.allowMusic){
                 this.$refs.player.load()
                 this.$refs.player.play()
             }
@@ -34,6 +37,14 @@ export default{
             if(to.name !== 'reader' && to.name !== 'comic'){
                 this.$refs.player.pause()
                 this.$store.commit('updateAudioSource', {audioSource: null})
+            }
+        },
+        musicAllowed(){
+            if(this.$store.state.allowMusic){
+                this.$refs.player.load()
+                this.$refs.player.play()
+            } else{
+                this.$refs.player.pause()
             }
         }
     }

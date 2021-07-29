@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="mt-5 container">
-          <p class="m5-3">Suchergebnisse für:</p>
+          <p class="m5-3">Search results for:</p>
           <h1>{{searchValue}}</h1>
           <div class="row">
             <comix-teaser class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4" v-for="(comic, i) in foundComix" :key="i" :comic="comic" :inGrid="true"></comix-teaser>

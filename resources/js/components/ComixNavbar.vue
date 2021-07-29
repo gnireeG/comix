@@ -17,13 +17,13 @@
                     <router-link class="navbar-link genre-btn" v-for="(category, index) in categories" :key="index"
                     :to="{name: 'genre', params: {genre: category.title}}">{{ category.title }}</router-link>
                 </div>
-                <p class="navbar-link">Beliebt</p>
-                <p class="navbar-link">Neuheiten</p>
+                <p class="navbar-link">Trending</p>
+                <p class="navbar-link">New</p>
             </div>
             
         </div>
         <div class="navbar-search" v-show="mobileSearchActive">
-            <div class="container"><input type="text" name="search-input" id="search-input" placeholder="suchen" @input="searchComix" v-model="searchval"></div>
+            <div class="container"><input type="text" name="search-input" id="search-input" placeholder="search" @input="searchComix" v-model="searchval"></div>
         </div>
     </div>
     <!-- DESKTOP MENU -->
@@ -36,13 +36,13 @@
                     </div>
                     <div class="navbar-links">
                         <p @click="toggleGenres" class="navbar-link genre-btn">Genres</p>
-                        <p class="navbar-link">Beliebt</p>
-                        <p class="navbar-link">Neuheiten</p>
+                        <p class="navbar-link">Trending</p>
+                        <p class="navbar-link">New</p>
 
                     </div>
                 </div>
                 <div class="navbar-search">
-                    <input type="text" name="search-input" id="search-input" placeholder="suchen" @input="searchComix" v-model="searchval">
+                    <input type="text" name="search-input" id="search-input" placeholder="search" @input="searchComix" v-model="searchval">
                     <button @click="searchComix"><i class="bi bi-search search-icon"></i></button>
                 </div>
             </div>
