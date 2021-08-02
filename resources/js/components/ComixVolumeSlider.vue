@@ -4,9 +4,9 @@
             <i class="bi bi-music-note-beamed"></i>
             <i class="bi bi-pause-circle pointer" @click="pause" v-if="allowMusic"></i>
             <i class="bi bi-play-circle pointer" @click="play" v-if="!allowMusic"></i>
-            <i v-if="volume == 0 && !isIos" class="bi bi-volume-mute-fill"></i>
-            <i @click="mute" v-if="volume > 0 && !isIos" class="bi bi-volume-up-fill pointer"></i>
-            <input v-if="!isIos" :value="volume" type="range" id="volume" name="volume" min="0" max="1" step="0.01" @input="updateVol" ref="slider">
+            <i @click="noMute" v-if="volume == 0 && !isMobile" class="bi bi-volume-mute-fill"></i>
+            <i @click="mute" v-if="volume > 0 && !isMobile" class="bi bi-volume-up-fill pointer"></i>
+            <input v-if="!isMobile" :value="volume" type="range" id="volume" name="volume" min="0" max="1" step="0.01" @input="updateVol" ref="slider">
         </p>
     </div>
 </template>
@@ -16,6 +16,9 @@ export default{
     methods: {
         mute(){
             this.$store.commit('updateVolume', {volume: 0})
+        },
+        noMute(){
+           this.$store.commit('updateVolume', {volume: .5}) 
         },
         updateVol(){
             this.$store.commit('updateVolume', {volume: this.$refs.slider.value})
@@ -36,6 +39,9 @@ export default{
         },
         allowMusic(){
             return this.$store.state.allowMusic
+        },
+        isMobile(){
+            return this.$store.state.isMobile
         }
     },
     watch: {
@@ -44,6 +50,11 @@ export default{
         },
         allowMusic(){
             console.log('Play/pause now')
+        },
+        watch: {
+            isMobile(){
+                console.log('mobile toggle')
+            }
         }
     }
 }
